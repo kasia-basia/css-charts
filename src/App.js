@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.scss";
+import MetricsTable from "./MetricsTable/MetricsTable";
+import { data1, data2 } from "./data";
 
 function App() {
+  const [data, setData] = useState(data1);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MetricsTable data={data} />
+      <button
+        onClick={() => {
+          setData((prevState) => {
+            if (prevState === data1) {
+              return data2;
+            } else {
+              return data1;
+            }
+          });
+        }}
+      >
+        Shuffle data!
+      </button>
     </div>
   );
 }
