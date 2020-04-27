@@ -6,10 +6,11 @@ import { data1, data2 } from "./data";
 
 function App() {
   const [data, setData] = useState(data1);
+  const [target, setTarget] = useState(80);
 
   return (
     <div className="App">
-      <MetricsTable data={data} />
+      <MetricsTable data={data} target={target} />
       <button
         onClick={() => {
           setData((prevState) => {
@@ -17,6 +18,13 @@ function App() {
               return data2;
             } else {
               return data1;
+            }
+          });
+          setTarget((prevState) => {
+            if (prevState === 80) {
+              return 67;
+            } else {
+              return 80;
             }
           });
         }}
